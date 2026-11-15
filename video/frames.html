@@ -1,0 +1,28 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Frames</title>
+<body style="margin:0;background:#222">
+<video id="v" muted playsinline preload="auto" style="width:100%"></video>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.13/dist/hls.min.js"></script>
+<script>
+const v = document.getElementById("v");
+const src = new URLSearchParams(location.search).get("src") || "aplus.mp4";
+if (src.endsWith(".m3u8")) { const h = new Hls(); h.loadSource(src); h.attachMedia(v); } else v.src = src;
+const seek = t => new Promise(r => { v.onseeked = () => r(); v.currentTime = t; });
+// Kontaktbogen: n Bilder in gleichen Abständen, verkleinert
+async function sheet(n, w) {
+  await new Promise(r => v.readyState >= 1 ? r() : v.onloadedmetadata = r);
+  const h = Math.round(w * v.videoHeight / v.videoWidth), cols = 6;
+  const c = document.createElement("canvas"); c.width = cols * w; c.height = Math.ceil(n / cols) * (h + 18);
+  const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0, 0, c.width, c.height); g.font = "13px Arial"; g.fillStyle = "#000";
+  for (let i = 0; i < n; i++) {
+    const t = v.duration * (i + .5) / n; await seek(t);
+    const x = (i % cols) * w, y = Math.floor(i / cols) * (h + 18);
+    g.drawImage(v, x, y, w, h); g.fillText(t.toFixed(1) + "s", x + 4, y + h + 14);
+  }
+  return save(c, "sheet.jpg", .8);
+}
+// Einzelbild in voller Auflösung
+async function grab(t, name) { await seek(t); const c = document.createElement("canvas"); c.width = v.videoWidth; c.height = v.videoHeight; c.getContext("2d").drawImage(v, 0, 0); return save(c, name, .93); }
+function save(c, name, q) { return new Promise(r => c.toBlob(b => fetch("/save?name=" + encodeURIComponent(name), { method: "POST", body: b }).then(() => r(name)), "image/jpeg", q)); }
+</script>

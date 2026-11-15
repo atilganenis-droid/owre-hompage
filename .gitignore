@@ -1,0 +1,6 @@
+# Zugangsdaten und Schlüssel nie hochladen
+.env
+.env.*
+
+# Abhängigkeiten werden bei Bedarf neu installiert
+node_modules/
