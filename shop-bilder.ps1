@@ -75,6 +75,27 @@ public static class Bg {
       px[i]=(255<<24)|(o[0]<<16)|(o[1]<<8)|o[2]; }
     System.Runtime.InteropServices.Marshal.Copy(px, 0, d.Scan0, px.Length); b.UnlockBits(d);
   }
+  // Übernimmt nur den Farbton des Lichts von einem Referenzbild: vergleicht die hellen Flächen (Wände, Licht)
+  // beider Bilder und gleicht das Verhältnis Rot/Grün/Blau an. Helligkeit und Kontrast bleiben.
+  static double[] LightTint(int[] px) {
+    var hist = new int[256]; foreach (int p in px) hist[(int)Lum(p)]++;
+    int cut=255, acc=0; while (cut>0 && acc < px.Length*35/100) { acc += hist[cut]; cut--; }
+    double r=0,g=0,b=0; int n=0;
+    foreach (int p in px) if (Lum(p) > cut) { r+=(p>>16)&255; g+=(p>>8)&255; b+=p&255; n++; }
+    double m=(r+g+b)/3; return new double[]{ r/m, g/m, b/m };
+  }
+  public static void MatchTint(Bitmap b, Bitmap reference, double strength) {
+    double[] t = LightTint(Px(b)), want = LightTint(Px(reference));
+    int w=b.Width, h=b.Height; var d = b.LockBits(new Rectangle(0,0,w,h), ImageLockMode.ReadWrite, PixelFormat.Format32bppArgb);
+    var px = new int[w*h]; System.Runtime.InteropServices.Marshal.Copy(d.Scan0, px, 0, px.Length);
+    var k = new double[3]; for (int c=0;c<3;c++) k[c] = 1 + (want[c]/t[c] - 1)*strength;
+    double norm = .299*k[0]+.587*k[1]+.114*k[2]; for (int c=0;c<3;c++) k[c] /= norm;    // Helligkeit gleich lassen
+    for (int i=0;i<px.Length;i++){ int p=px[i]; int[] o=new int[3];
+      for (int c=0;c<3;c++){ int sh=16-8*c; o[c]=(int)Math.Max(0,Math.Min(255,((p>>sh)&255)*k[c])); }
+      px[i]=(255<<24)|(o[0]<<16)|(o[1]<<8)|o[2]; }
+    System.Runtime.InteropServices.Marshal.Copy(px, 0, d.Scan0, px.Length); b.UnlockBits(d);
+  }
+
   // Entfernt Text auf ruhigem Hintergrund: füllt ein Rechteck durch Verlauf zwischen den Pixeln links/rechts (horizontal)
   // oder oben/unten (vertikal) außerhalb des Rechtecks
   public static void Erase(Bitmap b, int x0, int y0, int x1, int y1, bool horizontal) {
@@ -365,6 +386,11 @@ foreach ($c in 'beige', 'grau') {
   $refs | ForEach-Object { $_.Dispose() }
   $tmp = "$wz.tmp"; $big.Save($tmp, $enc, $ep); $big.Dispose(); Move-Item -Force $tmp $wz
 }
+# Beiges Startbild wirkte rötlich: Lichtfarbe vom beigen Badezimmer übernehmen
+$hero = Join-Path $out 'beige-hero.jpg'
+$b = Load32 $hero; $ref = New-Object System.Drawing.Bitmap (Join-Path $out 'beige-bad.jpg')
+[Bg]::MatchTint($b, $ref, 1.7); $ref.Dispose()
+$tmp = "$hero.tmp"; $b.Save($tmp, $enc, $ep); $b.Dispose(); Move-Item -Force $tmp $hero
 # Größen-Bilder (S, L, XXL): Amazon-Überschrift und "Ideal für"-Liste entfernen, Maßpfeile behalten.
 # Bereiche als Anteil der Bildgröße: Titel = [y0, y1], Liste = [x0, y0, x1, y1]
 $sizeAreas = @{
