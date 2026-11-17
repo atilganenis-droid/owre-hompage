@@ -1,5 +1,16 @@
-<title>OWRE Home Shop</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>OWRE – Aufbewahrung aus Baumwolle und Leinen</title>
+<meta name="description" content="OWRE: faltbare Aufbewahrungsboxen aus Baumwolle und Leinen im 3er-Set, in Beige und Grau. Ruhige Dinge für ein schönes Zuhause. Erhältlich exklusiv bei Amazon.de.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="OWRE – Ruhige Dinge für ein schönes Zuhause">
+<meta property="og:description" content="Faltbare Aufbewahrungsboxen aus Baumwolle und Leinen. Erhältlich exklusiv bei Amazon.de.">
+<meta property="og:image" content="img/shop/beige-hero.jpg">
+<meta property="og:locale" content="de_DE">
+<link rel="icon" type="image/png" href="img/logo/owre-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;1,300&display=swap">
@@ -51,13 +62,13 @@
 html { scroll-behavior: smooth; scroll-padding-top: 132px; scrollbar-gutter: stable; }
 @media (max-width: 760px) { html { scroll-padding-top: 74px; } }
 html.locked { overflow: hidden; }
-body { background: var(--bg); color: var(--ink); font-family: var(--font); font-weight: 300; font-size: 16px; line-height: 1.65; overflow-x: clip;
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font); font-weight: 300; font-size: 16px; line-height: 1.65; overflow-x: clip;
   -webkit-font-smoothing: antialiased; transition: background-color 1s var(--ease); }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
 .wrap { max-width: 1440px; margin-inline: auto; padding-left: max(var(--gutter), env(safe-area-inset-left, 0px)); padding-right: max(var(--gutter), env(safe-area-inset-right, 0px)); }
 a { color: inherit; text-underline-offset: 3px; }
 button { font: inherit; color: inherit; cursor: pointer; }
-img { display: block; }
+img { display: block; max-width: 100%; }
 p { margin: 0; }
 b, strong { font-weight: 500; }
 :focus-visible { outline: 1px solid var(--ink); outline-offset: 3px; }
@@ -123,11 +134,8 @@ nav.main a:hover::after { transform: scaleX(1); transform-origin: left; }
 .menu-btn { display: none; width: 44px; height: 44px; margin-left: -10px; padding: 0; border: 0; background: none; place-content: center; gap: 7px; }
 .menu-btn i { display: block; width: 24px; height: 1px; background: var(--ink); }
 .tools { display: flex; justify-content: flex-end; }
-.cart-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0; border: 0; background: none; }
+.cart-btn { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0; border: 0; background: none; text-decoration: none; }
 .cart-bag { display: none; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.1; }
-.cart-count { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 6px; border-radius: 12px; border: 1px solid var(--line-strong); font-size: 11px; letter-spacing: 0; font-variant-numeric: tabular-nums; transition: background .4s, color .4s, border-color .4s; }
-.cart-count.full { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.cart-count.bump { animation: bump .6s var(--ease); }
 @keyframes bump { 40% { scale: 1.4; } }
 
 /* Menü auf dem Handy: ganzer Bildschirm, große Zeilen */
@@ -234,11 +242,6 @@ nav.main a:hover::after { transform: scaleX(1); transform-origin: left; }
 .buy h2 { margin-top: 14px; font-size: clamp(54px, 6vw, 92px); line-height: .9; letter-spacing: -.035em; }
 .buy .sub { margin-top: 14px; color: var(--muted); }
 .rev-link { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 400; color: var(--muted); }
-.price { display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap; font-variant-numeric: tabular-nums; }
-.price .now { font-size: 26px; font-weight: 400; }
-.price .was { color: var(--muted); text-decoration: line-through; }
-.price .per { color: var(--muted); font-size: 13px; font-weight: 400; }
-.legal { margin-top: 6px; color: var(--muted); font-size: 12px; font-weight: 400; }
 .opt-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; font-size: 13px; font-weight: 400; }
 .swatches { display: flex; gap: 18px; padding: 5px; }
 .swatch { position: relative; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 50%; background: var(--stage) center / cover; }
@@ -249,20 +252,6 @@ nav.main a:hover::after { transform: scaleX(1); transform-origin: left; }
 .size small { color: var(--muted); font-size: 11px; font-weight: 400; font-variant-numeric: tabular-nums; transition: color .4s; }
 .size[aria-pressed="true"] { border-color: var(--ink); background: var(--ink); color: var(--bg); }
 .size[aria-pressed="true"] small { color: inherit; opacity: .75; }
-.qty-row { display: flex; gap: 10px; }
-.qty { display: flex; border: 1px solid var(--line-strong); }
-.qty button { width: 44px; padding: 0; border: 0; background: none; font-size: 18px; }
-.qty output { width: 30px; display: grid; place-items: center; font-weight: 400; font-variant-numeric: tabular-nums; }
-.btn-add { flex: 1; justify-content: space-between; padding-inline: 24px; }
-.add-main { display: grid; height: 1.5em; overflow: hidden; }
-.add-main span { grid-area: 1 / 1; line-height: 1.5; white-space: nowrap; transition: transform .6s var(--ease); }
-.add-main .l2 { transform: translateY(110%); }
-.btn-add.done .l1 { transform: translateY(-110%); }
-.btn-add.done .l2 { transform: none; }
-.add-amt { font-variant-numeric: tabular-nums; letter-spacing: .06em; white-space: nowrap; }
-.promise { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 13px; font-weight: 400; }
-.promise div { display: grid; gap: 4px; padding-top: 14px; border-top: 1px solid var(--line); }
-.promise .label { color: var(--muted); font-size: 10px; }
 
 /* Aufklapp-Bereiche */
 details { border-bottom: 1px solid var(--line); }
@@ -416,7 +405,7 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
 .band .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 6vw, 110px); align-items: center; }
 .band h2 { font-size: var(--fs-h2); line-height: 1.04; letter-spacing: -.022em; margin: 14px 0 18px; }
 .band p { opacity: .86; max-width: 46ch; }
-.wait { display: grid; gap: 22px; }
+.wait { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
 .wait fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; }
 .wait legend { padding: 0; margin-bottom: 12px; font-size: 13px; font-weight: 400; opacity: .86; }
 .chip { position: relative; }
@@ -428,7 +417,7 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
 .wait-row input { flex: 1; min-width: 0; padding: 14px 0; border: 0; background: transparent; font: inherit; color: inherit; }
 .wait-row input::placeholder { color: inherit; opacity: .7; }
 .wait-row input:focus { outline: none; }
-.wait-row button { padding: 0 0 0 16px; border: 0; background: none; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 400; }
+.wait-row button { flex: none; white-space: nowrap; padding: 0 0 0 16px; border: 0; background: none; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; font-weight: 400; }
 .wait .ok { min-height: 1.65em; font-size: 14px; font-weight: 400; }
 .band :focus-visible { outline-color: var(--accent-ink); }
 
@@ -448,42 +437,27 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
 .draft span { display: block; max-width: 110ch; }
 .foot-logo { width: min(100%, 940px); margin-top: clamp(40px, 6vw, 80px); background: color-mix(in srgb, var(--accent) 20%, transparent); }
 
+/* Amazon statt Warenkorb */
+.amz-row { display: grid; gap: 10px; }
+.btn-amz { width: 100%; }
+.legal { color: var(--muted); font-size: 12px; font-weight: 400; }
+.ext { font-size: 14px; letter-spacing: 0; }
+.consent { font-size: 12px; font-weight: 400; opacity: .8; max-width: 52ch; }
+.consent a { color: inherit; }
+
 /* Kaufleiste: erscheint, sobald der Kaufknopf aus dem Bild gescrollt ist */
 .buybar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 18; background: color-mix(in srgb, var(--bg) 90%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); transform: translateY(110%); transition: transform .7s var(--ease), background-color 1s var(--ease); }
 .buybar.on { transform: none; }
-.buybar .wrap { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto auto; align-items: center; gap: 16px; padding-block: 10px; }
-.bb-thumb, .line .thumb-pic { background: var(--photo); aspect-ratio: 1; max-width: 100%; padding: 5px; }
-.bb-thumb img, .line .thumb-pic img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.buybar .wrap { display: grid; grid-template-columns: 48px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding-block: 10px; }
+.bb-thumb { background: var(--photo); aspect-ratio: 1; max-width: 100%; padding: 5px; }
+.bb-thumb img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
 .bb-info { display: grid; line-height: 1.3; min-width: 0; }
 .bb-info b { font-weight: 400; font-size: 17px; }
 .bb-info span { font-size: 12px; font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.bb-price { font-weight: 400; font-variant-numeric: tabular-nums; }
 .buybar .btn { min-height: 46px; flex: none; }
 
 /* Warenkorb */
-.scrim { position: fixed; inset: 0; z-index: 40; background: rgba(27, 24, 22, .4); animation: fadeIn .4s; }
-.drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 41; width: min(440px, 100%); display: grid; grid-template-rows: auto auto 1fr auto; gap: 22px; background: var(--bg); border-left: 1px solid var(--line);
-  padding: calc(env(safe-area-inset-top, 0px) + 22px) max(24px, env(safe-area-inset-right, 0px)) calc(env(safe-area-inset-bottom, 0px) + 24px) 24px;
-  transform: translateX(102%); visibility: hidden; transition: transform .7s var(--ease), visibility 0s .7s, background-color 1s var(--ease); }
-.drawer.open { transform: none; visibility: visible; transition: transform .7s var(--ease), background-color 1s var(--ease); }
-.drawer-head { display: flex; justify-content: space-between; align-items: center; }
-.drawer-head h2 { font-size: 30px; letter-spacing: -.02em; }
-.shipmeter { display: grid; gap: 10px; font-size: 13px; font-weight: 400; }
-.lines { overflow-y: auto; display: grid; gap: 18px; align-content: start; }
-.line { display: grid; grid-template-columns: 76px minmax(0, 1fr) auto; gap: 14px; align-items: start; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
-.line h3 { font-size: 18px; font-weight: 400; }
-.line small { display: block; color: var(--muted); font-size: 12px; font-weight: 400; }
-.line .l-tools { display: flex; align-items: center; gap: 14px; margin-top: 10px; }
-.line .qty button { width: 32px; height: 30px; font-size: 15px; }
-.line .qty output { width: 24px; font-size: 13px; }
-.line .rm { padding: 0; border: 0; background: none; color: var(--muted); font-size: 12px; font-weight: 400; text-decoration: underline; text-underline-offset: 3px; }
-.line .sum { font-weight: 400; font-variant-numeric: tabular-nums; }
-.total { display: grid; gap: 10px; padding-top: 4px; }
-.total .t-row { display: flex; justify-content: space-between; gap: 16px; font-weight: 400; font-variant-numeric: tabular-nums; }
-.total .t-sum { padding-top: 12px; border-top: 1px solid var(--line); font-size: 18px; }
-.total small { font-size: 12px; }
-.total .btn { margin-top: 8px; }
 
 /* Große Bildansicht */
 .lightbox { position: fixed; inset: 0; z-index: 50; display: grid; grid-template-rows: minmax(0, 1fr) auto; background: var(--bg); animation: fadeIn .5s var(--ease);
@@ -535,12 +509,10 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
   .gallery { grid-template-columns: minmax(0, 1fr); }
   .thumbs { order: 2; grid-auto-flow: column; grid-auto-columns: 62px; justify-content: start; }
   .adv-tab { padding: 0 26px; }
-  .qty-row .btn-add { justify-content: center; padding-inline: 14px; letter-spacing: .12em; }
-  .qty-row .add-amt { display: none; }      /* der Preis steht direkt darüber */
   .dim { grid-template-columns: 54px minmax(0, 1fr) 74px; gap: 12px; }
   .loupe { width: 44%; }
   .buybar .wrap { grid-template-columns: minmax(0, 1fr) auto; }
-  .bb-thumb, .bb-price { display: none; }
+  .bb-thumb { display: none; }
   .buybar .btn { padding: 0 20px; }
   .lb-hint { display: none; }
   .site-foot .cols { grid-template-columns: 1fr; }
@@ -550,6 +522,8 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
   html { scroll-behavior: auto; }
 }
 </style>
+</head>
+<body>
 
 <div class="curtain" aria-hidden="true"><span class="logo"></span></div>
 <script>
@@ -558,9 +532,9 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
 </script>
 
 <div class="notice label" id="top" aria-live="off">
-  <span class="on">Kostenloser Versand ab 49 €</span>
-  <span>30 Tage kostenlose Rückgabe</span>
-  <span>Versand in 1–2 Werktagen</span>
+  <span class="on">Erhältlich exklusiv bei Amazon.de</span>
+  <span>Baumwolle und Leinen statt Plastik</span>
+  <span>In Beige und Grau, in drei Größen</span>
 </div>
 
 <header class="site" id="siteHeader">
@@ -570,12 +544,12 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
     </div>
     <a class="logo" href="#top" aria-label="OWRE Startseite">OWRE</a>
     <div class="tools label">
-      <button class="cart-btn label" id="cartBtn" aria-haspopup="dialog" aria-label="Warenkorb öffnen"><span class="cart-word">Warenkorb</span><svg class="cart-bag" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8.5h13l-1 11.5h-11zM9 8.5V6.5a3 3 0 0 1 6 0v2"/></svg><span class="cart-count" id="cartCount">0</span></button>
+      <a class="cart-btn label" data-amz href="https://www.amazon.de/dp/B0GMLQXLKC" target="_blank" rel="noopener" aria-label="OWRE bei Amazon ansehen (öffnet in neuem Tab)"><span class="cart-word">Bei Amazon</span><svg class="cart-bag" viewBox="0 0 24 24" aria-hidden="true"><path d="M5.5 8.5h13l-1 11.5h-11zM9 8.5V6.5a3 3 0 0 1 6 0v2"/></svg><span class="ext" aria-hidden="true">↗</span></a>
     </div>
   </div>
   <div class="wrap">
     <nav class="main label" aria-label="Hauptmenü">
-      <a href="#aufbewahrung">Shop</a>
+      <a href="#aufbewahrung">Kollektion</a>
       <a href="#bewertungen">Bewertungen</a>
       <a href="#groessen">Größen &amp; Regal-Check</a>
       <a href="#bald">Bald neu</a>
@@ -594,7 +568,7 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
     <a class="big" style="--i:4" href="#bald">Bald neu</a>
     <a class="big" style="--i:5" href="#ueber">Über OWRE</a>
   </nav>
-  <p class="label muted">Kostenloser Versand ab 49 € · 30 Tage Rückgabe</p>
+  <p class="label muted">Erhältlich exklusiv bei Amazon.de</p>
 </div>
 
 <main>
@@ -602,19 +576,19 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
   <div class="hero-top">
     <h1><span class="wd" style="--i:0"><span>Ruhige</span></span> <span class="wd" style="--i:1"><span>Dinge</span></span> <span class="wd" style="--i:2"><span>für</span></span> <span class="wd" style="--i:3"><span>ein</span></span> <span class="wd" style="--i:4"><span><em>schönes</em></span></span> <span class="wd" style="--i:5"><span>Zuhause.</span></span></h1>
     <div class="hero-side">
-      <p class="hero-lead">Faltbare Aufbewahrungsboxen aus Baumwolle und Leinen. 3er-Set in Beige oder Grau, ab 24,99 €.</p>
-      <a class="btn" href="#aufbewahrung">Jetzt kaufen <span class="arr">→</span></a>
-      <a class="hero-rate" href="#bewertungen"><span class="stars" aria-hidden="true">★★★★★</span><span class="muted">Echte Bewertungen von Amazon-Kunden</span></a>
+      <p class="hero-lead">Faltbare Aufbewahrungsboxen aus Baumwolle und Leinen. 3er-Set in Beige oder Grau, in drei Größen.</p>
+      <a class="btn" data-amz href="https://www.amazon.de/dp/B0GMLQXLKC" target="_blank" rel="noopener">Bei Amazon ansehen <span class="arr">↗</span></a>
+      <a class="hero-rate" href="#bewertungen"><span class="muted" data-rating>Echte Bewertungen von Amazon-Kunden</span></a>
     </div>
   </div>
   <div class="panels" id="panels">
     <a class="panel grain" href="#aufbewahrung" data-color="beige" style="--i:0;--op:78% 50%">
       <img src="img/shop/beige-hero.jpg" alt="Helles Wohnzimmer mit beigem Sofa und beigen OWRE Boxen im Holzregal" fetchpriority="high">
-      <div class="panel-info"><span class="label">Farbe 01</span><h2>Beige</h2><p>Warm und hell. Passt zu Holz, Leinen und Weiß.</p><span class="panel-cta label">Beige ansehen <span class="arr">→</span></span></div>
+      <div class="panel-info"><span class="label">Farbe 01</span><h2>Beige</h2><p>Warm und hell. Passt zu Holz, Leinen und Weiß.</p><span class="panel-cta label">Beige entdecken <span class="arr">→</span></span></div>
     </a>
     <a class="panel grain" href="#aufbewahrung" data-color="grau" style="--i:1;--op:72% 50%">
       <img src="img/shop/grau-schlafzimmer.jpg" alt="Schlafzimmer mit grauen OWRE Boxen im beleuchteten Kleiderschrank">
-      <div class="panel-info"><span class="label">Farbe 02</span><h2>Grau</h2><p>Klar und modern. Passt zu Weiß, Schwarz und Stein.</p><span class="panel-cta label">Grau ansehen <span class="arr">→</span></span></div>
+      <div class="panel-info"><span class="label">Farbe 02</span><h2>Grau</h2><p>Klar und modern. Passt zu Weiß, Schwarz und Stein.</p><span class="panel-cta label">Grau entdecken <span class="arr">→</span></span></div>
     </a>
   </div>
 </div></section>
@@ -640,14 +614,6 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
       <a class="rev-link" href="#bewertungen">Echte Bewertungen von Amazon-Kunden ansehen</a>
     </div>
     <div>
-      <div class="price">
-        <span class="now" id="pNow">39,99 €</span>
-        <span class="was" id="pWas">44,99 €</span>
-        <span class="per" id="pPer">13,33 € / Stück</span>
-      </div>
-      <p class="legal">inkl. MwSt., zzgl. <a href="#versand">Versandkosten</a><span id="pLow"></span></p>
-    </div>
-    <div>
       <div class="opt-head"><span class="label">Farbe</span><span id="colorName" class="muted">Beige</span></div>
       <div class="swatches">
         <button class="swatch" id="sw-beige" data-color="beige" aria-label="Beige" aria-pressed="true" style="background-image:url(img/shop/beige-stoff.jpg)"></button>
@@ -658,22 +624,13 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
       <div class="opt-head"><span class="label">Größe</span><a href="#regal" class="muted">Passt es in mein Regal?</a></div>
       <div class="sizes" id="sizes"></div>
     </div>
-    <div class="qty-row">
-      <div class="qty">
-        <button id="qMinus" aria-label="Menge verringern">−</button>
-        <output id="qOut" aria-label="Menge">1</output>
-        <button id="qPlus" aria-label="Menge erhöhen">+</button>
-      </div>
-      <button class="btn btn-add" id="addBtn"><span class="add-main"><span class="l1">In den Warenkorb</span><span class="l2" aria-hidden="true">Hinzugefügt</span></span><span class="add-amt" id="addAmt">39,99 €</span></button>
-    </div>
-    <div class="promise">
-      <div><span class="label">Lieferung</span><span>1–2 Werktage, ab 49 € versandkostenfrei</span></div>
-      <div><span class="label">Rückgabe</span><span>30 Tage, kostenlos</span></div>
+    <div class="amz-row">
+      <a class="btn btn-amz" id="amzBtn" data-amz href="https://www.amazon.de/dp/B0GMLQXLKC" target="_blank" rel="noopener">Bei Amazon ansehen <span class="arr">↗</span></a>
+      <p class="legal">Erhältlich exklusiv bei Amazon.de. Preis, Lieferung und Rückgabe findest du direkt im Amazon-Angebot.</p>
     </div>
     <div>
       <details><summary>Produktdetails und Maße</summary><ul class="facts" id="facts"></ul></details>
       <details><summary>Material und Pflege</summary><p>Baumwolle und Leinen, verstärkte Seitenwände. Mit einem feuchten Tuch abwischen, nicht waschen. Neue Boxen vor dem ersten Gebrauch ein bis zwei Tage aufgefaltet auslüften lassen.</p></details>
-      <details id="versand"><summary>Versand und Rückgabe</summary><p>Versand in neutraler Verpackung innerhalb von 1–2 Werktagen. Versandkosten 4,95 €, ab 49 € kostenlos. Rückgabe innerhalb von 30 Tagen kostenlos. Bezahlen mit PayPal, Klarna oder Karte.</p></details>
     </div>
   </div>
 </div></section>
@@ -690,7 +647,7 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
       <span class="label" id="revCount">1 / 6</span>
       <div class="rev-progress" id="revProgress"><i></i></div>
     </div>
-    <p class="rev-src">Ausgewählte Bewertungen aus verifizierten Käufen auf Amazon.de. <a href="https://www.amazon.de/product-reviews/B0GMLQXLKC">Alle Bewertungen lesen</a></p>
+    <p class="rev-src">Ausgewählte Bewertungen aus verifizierten Käufen auf Amazon.de. <span data-rating></span> <a href="https://www.amazon.de/product-reviews/B0GMLQXLKC" target="_blank" rel="noopener">Alle Bewertungen auf Amazon lesen</a></p>
     <ul class="praise" id="praise"></ul>
   </div>
 </div></section>
@@ -767,7 +724,7 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
   <div class="rv">
     <span class="label">Bald neu</span>
     <h2>Was als Nächstes kommt</h2>
-    <p>OWRE wächst Raum für Raum, in denselben ruhigen Farben wie unsere Boxen. Trag dich ein und erfahre als Erste oder Erster, wenn etwas Neues da ist. Dazu gibt es 10 % auf deine erste Bestellung.</p>
+    <p>OWRE wächst Raum für Raum, in denselben ruhigen Farben wie unsere Boxen. Trag dich ein und erfahre als Erste oder Erster, wenn etwas Neues da ist.</p>
   </div>
   <form class="wait rv" id="waitForm" novalidate style="--d:.12s">
     <fieldset>
@@ -782,6 +739,7 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
       <input id="waitMail" type="email" placeholder="Deine E-Mail-Adresse" aria-label="E-Mail-Adresse" autocomplete="off">
       <button type="submit">Benachrichtigen <span class="arr">→</span></button>
     </div>
+    <p class="consent">Mit der Anmeldung stimmst du zu, dass wir dich per E-Mail informieren. Abmeldung jederzeit möglich. Mehr in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
     <div class="ok" id="waitOk" role="status"></div>
   </form>
 </div></section>
@@ -798,10 +756,9 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
 <section class="faq" id="fragen"><div class="wrap">
   <div class="head rv"><span class="label muted">Hilfe</span><h2>Häufige Fragen</h2></div>
   <div class="rv" style="--d:.1s">
-    <details><summary>Wie schnell wird geliefert?</summary><p>Bestellungen bis 14 Uhr verlassen das Lager am selben Werktag. In Deutschland ist die Box meist nach 1–2 Werktagen bei dir.</p></details>
+    <details><summary>Wo kann ich OWRE kaufen?</summary><p>Unsere Boxen gibt es exklusiv bei <a data-amz href="https://www.amazon.de/dp/B0GMLQXLKC" target="_blank" rel="noopener">Amazon.de</a>. Dort findest du Preise, Lieferzeiten und alles zur Rückgabe.</p></details>
     <details><summary>Wie pflege ich die Boxen?</summary><p>Mit einem feuchten Tuch abwischen. Nicht in die Waschmaschine geben, sonst verlieren die verstärkten Wände ihre Form.</p></details>
     <details><summary>Die Box riecht nach dem Auspacken. Ist das normal?</summary><p>Neue Textilien können nach dem Transport kurz nach Stoff riechen. Lass die Boxen aufgefaltet ein bis zwei Tage an der Luft stehen, dann verfliegt der Geruch.</p></details>
-    <details><summary>Kann ich zurückschicken?</summary><p>Ja. Du hast 30 Tage Zeit und die Rücksendung ist kostenlos.</p></details>
   </div>
 </div></section>
 </main>
@@ -810,10 +767,10 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
   <div class="cols">
     <div><p style="max-width:30ch;color:var(--ink);font-size:19px;font-weight:300;line-height:1.35">Interior für ein ruhiges Zuhause.</p></div>
     <div><h4>Kollektionen</h4><ul><li><a href="#aufbewahrung">Aufbewahrung</a></li><li><a href="#bald">Bald neu</a></li><li><a href="#groessen">Größenberater</a></li><li><a href="#regal">Regal-Check</a></li></ul></div>
-    <div><h4>Hilfe</h4><ul><li>Versand</li><li>Rückgabe</li><li>Kontakt</li></ul></div>
-    <div><h4>Rechtliches</h4><ul><li>Impressum</li><li>AGB</li><li>Datenschutz</li><li>Widerruf</li></ul></div>
+    <div><h4>Kaufen</h4><ul><li><a data-amz href="https://www.amazon.de/dp/B0GMLQXLKC" target="_blank" rel="noopener">Bei Amazon.de</a></li><li><a href="#bewertungen">Bewertungen</a></li><li><a href="#fragen">Häufige Fragen</a></li></ul></div>
+    <div><h4>Rechtliches</h4><ul><li><a href="impressum.html">Impressum</a></li><li><a href="datenschutz.html">Datenschutz</a></li></ul></div>
   </div>
-  <p class="draft"><span>Entwurf eines Shops für OWRE. Bilder, Maße und Preise stammen aus dem Amazon-Angebot. Der Name „Lino“ ist ein Vorschlag, der 30-Tage-Tiefstpreis muss aus dem echten Preisverlauf kommen. Bestellung und Warteliste funktionieren hier nur als Vorschau.</span></p>
+  <p class="draft"><span>© <span id="year">2026</span> OWRE · Erhältlich exklusiv bei Amazon.de</span></p>
   <span class="logo foot-logo" role="img" aria-label="OWRE">OWRE</span>
 </div></footer>
 
@@ -821,22 +778,9 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
 <div class="buybar" id="buybar" inert><div class="wrap">
   <div class="bb-thumb"><img id="bbImg" src="img/shop/beige-pack.jpg" alt="" loading="lazy"></div>
   <div class="bb-info"><b>Lino</b><span class="muted" id="bbVariant">Beige · XXL · 3er-Set</span></div>
-  <span class="bb-price" id="bbPrice">39,99 €</span>
-  <button class="btn btn-add" id="bbAdd"><span class="add-main"><span class="l1">In den Warenkorb</span><span class="l2" aria-hidden="true">Hinzugefügt</span></span></button>
+  <a class="btn" id="bbAmz" data-amz href="https://www.amazon.de/dp/B0GMLQXLKC" target="_blank" rel="noopener">Bei Amazon <span class="arr">↗</span></a>
 </div></div>
 
-<div class="scrim" id="scrim" hidden></div>
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" inert>
-  <div class="drawer-head"><h2 id="drawerTitle">Warenkorb</h2><button class="link" id="closeBtn">Schließen</button></div>
-  <div class="shipmeter"><p id="shipNote"></p><div class="meter"><i id="shipBar"></i></div></div>
-  <div class="lines" id="lines"></div>
-  <div class="total">
-    <div class="t-row"><span>Zwischensumme</span><span id="subtotal">0,00 €</span></div>
-    <div class="t-row muted"><span>Versand</span><span id="ship">–</span></div>
-    <div class="t-row t-sum"><span>Gesamt <small class="muted">inkl. MwSt.</small></span><span id="grand">0,00 €</span></div>
-    <button class="btn" id="checkoutBtn">Zur Kasse</button>
-  </div>
-</aside>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Große Bildansicht" hidden>
   <div class="lb-stage" id="lbStage"><img id="lbImg" alt=""></div>
@@ -855,7 +799,6 @@ const root = document.documentElement;
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const mouse = matchMedia("(hover: hover) and (pointer: fine)").matches;
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-const euro = n => n.toFixed(2).replace(".", ",") + " €";
 const cm = n => String(Math.round(n * 10) / 10).replace(".", ",");
 const esc = s => s.replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
 const pic = (name, alt) => `<img src="img/shop/${name}.jpg" alt="${alt}" loading="lazy">`;
@@ -865,15 +808,26 @@ const introMs = reduced || root.classList.contains("no-intro") ? 0 : 1300;
 const COLORS = { beige: { name: "Beige", img: "beige" }, grau: { name: "Grau", img: "grau" } };
 // Maße außen in cm: l = Länge, b = Breite (an dieser Seite sitzen die Griffe, sie zeigt im Regal nach vorne), h = Höhe
 const SIZES = {
-  S:   { l: 33, b: 20, h: 18, price: 24.99, was: null },
-  L:   { l: 47, b: 28, h: 21, price: 34.99, was: null },
-  XXL: { l: 50, b: 40, h: 29, price: 39.99, was: 44.99 }
+  S:   { l: 33, b: 20, h: 18 },
+  L:   { l: 47, b: 28, h: 21 },
+  XXL: { l: 50, b: 40, h: 29 }
 };
 const dims = s => `${s.l} × ${s.b} × ${s.h}`;
-// Bei Streichpreisen Pflicht (PAngV): niedrigster Preis der letzten 30 Tage. Wert aus dem eigenen Preisverlauf eintragen.
-const LOWEST_30 = { XXL: 39.99 };
-const FREE_FROM = 49, SHIPPING = 4.95;
-const state = { color: "beige", size: "XXL", qty: 1, cart: [], slide: 0 };
+
+// ─── AMAZON ────────────────────────────────────────────────────────────────
+// Gekauft wird nur auf Amazon. Hier den Link jeder Variante eintragen (Seller Central → Angebot → Link kopieren).
+// Leere Einträge führen auf das Hauptangebot.
+const AMAZON_MAIN = "https://www.amazon.de/dp/B0GMLQXLKC";
+const AMAZON_LINKS = {
+  "beige-S": "", "beige-L": "", "beige-XXL": "",
+  "grau-S": "",  "grau-L": "",  "grau-XXL": ""
+};
+const amzUrl = () => AMAZON_LINKS[`${state.color}-${state.size}`] || AMAZON_MAIN;
+// Echter Stand bei Amazon. Bei jeder Änderung hier nachtragen (Stand laut Jarvis: 06.11.2026).
+const RATING = { avg: 3.9, count: 19 };
+const ratingText = () => `${String(RATING.avg).replace(".", ",")} von 5 Sternen bei ${RATING.count} Bewertungen auf Amazon.de.`;
+
+const state = { color: "beige", size: "XXL", slide: 0 };
 
 // ─── STARTBILD: zwei Räume, einer pro Farbe. Das Bild unter der Maus zoomt leicht heran und folgt ihr ─────────
 if (mouse && !reduced) $$(".panel").forEach(p => {
@@ -908,21 +862,15 @@ function paintColor() {
   $("revImg").src = beige ? "img/shop/beige-schlafzimmer.jpg" : "img/shop/grau-hero.jpg";
   $("revImg").style.objectPosition = beige ? "" : "84% 50%";
   $("revImg").alt = beige ? "Schlafzimmer mit beigen OWRE Boxen im offenen Kleiderschrank" : "Wohnzimmer mit grauen OWRE Boxen im Holzregal";
-  renderAdvisor(); paintBuy(); renderCart();
+  renderAdvisor(); paintBuy();
 }
 function setSize(k) { state.size = k; advSize = k; paintBuy(); renderAdvisor(); }
 function paintBuy() {
   const s = SIZES[state.size], c = COLORS[state.color];
   $$("#sizes .size").forEach(b => b.setAttribute("aria-pressed", b.dataset.size === state.size));
   $("pSub").textContent = `Aufbewahrungsbox aus Baumwolle & Leinen, 3er-Set, ${state.size}`;
-  $("pNow").textContent = euro(s.price);
-  $("pWas").textContent = s.was ? euro(s.was) : ""; $("pWas").hidden = !s.was;
-  $("pPer").textContent = euro(s.price / 3) + " / Stück";
-  $("pLow").textContent = s.was && LOWEST_30[state.size] ? ` · Niedrigster Preis der letzten 30 Tage: ${euro(LOWEST_30[state.size])}` : "";
-  $("qOut").textContent = state.qty;
-  $("addAmt").textContent = euro(s.price * state.qty);
-  $("bbVariant").textContent = `${c.name} · ${state.size} · 3er-Set${state.qty > 1 ? ` · ${state.qty}×` : ""}`;
-  $("bbPrice").textContent = euro(s.price * state.qty);
+  $("bbVariant").textContent = `${c.name} · ${state.size} · 3er-Set`;
+  $$("[data-amz]").forEach(a => { a.href = amzUrl(); });
   $("facts").innerHTML = [["Inhalt", "3 gleich große Boxen"], ["Farbe", c.name], ["Griffe", "vorne und hinten"], ["Faltbar", "ja"], ["Maßangabe", "Länge × Breite × Höhe, außen"],
     ...Object.entries(SIZES).map(([k, v]) => [`Maße ${k}${k === state.size ? " (gewählt)" : ""}`, dims(v) + " cm"])]
     .map(([a, b]) => `<li><span>${a}</span><span>${b}</span></li>`).join("");
@@ -1068,7 +1016,7 @@ function renderAdvisor() {
     <h3>${info.head}</h3>
     <ul class="adv-list">${info.list.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
     <figure class="scale">${scaleSvg(advSize)}<figcaption class="muted">Vorderseiten im gleichen Maßstab, daneben ein Blatt A4.</figcaption></figure>
-    <div class="adv-buy"><span class="adv-price">${euro(s.price)} <span class="muted">· 3er-Set in ${c.name}</span></span>
+    <div class="adv-buy"><span class="adv-price">3er-Set in ${c.name}</span>
       <button class="btn${chosen ? " ghost" : ""}" id="advPick"${chosen ? " disabled" : ""}>${chosen ? `Größe ${advSize} ist gewählt` : `Größe ${advSize} wählen <span class="arr">→</span>`}</button></div>`;
 }
 function advTo(k, focus) { if (k === advSize) return; advSize = k; renderAdvisor(); if (focus) $("adv-" + k).focus(); }
@@ -1182,39 +1130,24 @@ $("regalPick").onclick = () => {
 };
 
 // ─── BEWERTUNGEN ───────────────────────────────────────────────────────────
-// So fügst du die echten Bewertungen ein:
-//   1. Auf Amazon die Bewertung öffnen, Namen und kompletten Text kopieren.
-//   2. Unten bei der passenden Bewertung bei name: "..." und text: "..." einfügen.
-//   3. Am besten vorher die Person fragen, ob du Name und Text zeigen darfst.
-//      Der Name wird automatisch gekürzt (Vorname + Anfangsbuchstabe), du kannst ihn also voll einfügen.
-// Solange text leer ist, zeigt die Seite den Titel und eine kurze Zusammenfassung.
+// Echte Bewertungen von Amazon.de: nur Titel, Variante, Datum und was gelobt wurde. Keine Namen.
 const PRAISE = ["Schöne Optik", "Hochwertig verarbeitet", "Leicht aufzubauen und stabil", "Passt zur Einrichtung", "Kein oder kaum Geruch"];
 const REVIEWS = [
-  { name: "Merve Ö.", text: "", title: "Praktisch und schön", variant: "Beige, S", date: "16. Oktober 2026", lob: "fairer Preis, hochwertig, schöne Farbe" },
-  { name: "S. R.", text: "", title: "Sehr stabil, schön und einfach aufzubauen", variant: "Grau, L", date: "3. Oktober 2026", lob: "leicht aufzufalten, stabil, für den Kleiderschrank" },
-  { name: "C. H.", text: "", title: "Schön und hochwertig!", variant: "Beige, XXL", date: "22. August 2026", lob: "hochwertig, kein unangenehmer Geruch, würde nachbestellen" },
-  { name: "Büsra D.", text: "", title: "Empfehlenswerter Set", variant: "Beige, S", date: "6. September 2026", lob: "viel Platz, passt zur Einrichtung" },
-  { name: "Eren", text: "", title: "Praktisch und hochwertig", variant: "Beige, S", date: "1. April 2026", lob: "saubere Verarbeitung, passt ins IKEA-Billy-Regal" },
-  { name: "", text: "", title: "100% Weiterempfehlung", variant: "Beige, L", date: "13. Mai 2026", lob: "hochwertig, Geruch nach 1–2 Stunden weg" }
+  { text: "", title: "Praktisch und schön", variant: "Beige, S", date: "16. Oktober 2026", lob: "fairer Preis, hochwertig, schöne Farbe" },
+  { text: "", title: "Sehr stabil, schön und einfach aufzubauen", variant: "Grau, L", date: "3. Oktober 2026", lob: "leicht aufzufalten, stabil, für den Kleiderschrank" },
+  { text: "", title: "Schön und hochwertig!", variant: "Beige, XXL", date: "22. August 2026", lob: "hochwertig, kein unangenehmer Geruch, würde nachbestellen" },
+  { text: "", title: "Empfehlenswerter Set", variant: "Beige, S", date: "6. September 2026", lob: "viel Platz, passt zur Einrichtung" },
+  { text: "", title: "Praktisch und hochwertig", variant: "Beige, S", date: "1. April 2026", lob: "saubere Verarbeitung, passt ins IKEA-Billy-Regal" },
+  { text: "", title: "100% Weiterempfehlung", variant: "Beige, L", date: "13. Mai 2026", lob: "hochwertig, Geruch nach 1–2 Stunden weg" }
 ];
-// Kürzt automatisch: "Merve Özkaya" → "Merve Ö.". Einzelne Namen bleiben, nur groß geschrieben.
-function shortName(full) {
-  const parts = full.trim().split(/\s+/).filter(Boolean);
-  if (!parts.length) return "";
-  const cap = w => w.charAt(0).toUpperCase() + w.slice(1);
-  if (parts.length === 1) return cap(parts[0]);
-  const last = parts[parts.length - 1];
-  return `${cap(parts[0])} ${last.endsWith(".") ? last : last.charAt(0).toUpperCase() + "."}`;
-}
 const quote = $("quote"), revProg = $("revProgress");
 let rev = 0, revAuto = !reduced;
 function showReview(i) {
   rev = (i + REVIEWS.length) % REVIEWS.length;
   const r = REVIEWS[rev];
-  quote.innerHTML = `<div class="stars" role="img" aria-label="5 von 5 Sternen">★★★★★</div>
-    <blockquote>„${esc(r.title)}“</blockquote>
+  quote.innerHTML = `<blockquote>„${esc(r.title)}“</blockquote>
     ${r.text ? `<p class="q-body">${esc(r.text)}</p>` : `<p class="q-tags">Gelobt: <b>${esc(r.lob)}</b></p>`}
-    <footer>${r.name ? `<b>${esc(shortName(r.name))}</b>` : ""}<span>Verifizierter Kauf auf Amazon.de · ${r.variant} · ${r.date}</span></footer>`;
+    <footer><span>Verifizierter Kauf auf Amazon.de · ${r.variant} · ${r.date}</span></footer>`;
   quote.classList.remove("swap"); void quote.offsetWidth; quote.classList.add("swap");
   $("revCount").textContent = `${rev + 1} / ${REVIEWS.length}`;
   revProg.classList.remove("run"); void revProg.offsetWidth;
@@ -1232,50 +1165,14 @@ const revHold = () => revProg.classList.toggle("hold", !revSeen || revHover);
 ["pointerleave", "focusout"].forEach(t => revBox.addEventListener(t, () => { revHover = false; revHold(); }));
 $("praise").innerHTML = PRAISE.map(t => `<li>${t}</li>`).join("");
 
-// ─── WARENKORB ─────────────────────────────────────────────────────────────
-function renderCart(bump) {
-  const count = state.cart.reduce((n, l) => n + l.qty, 0);
-  const sub = state.cart.reduce((n, l) => n + l.qty * SIZES[l.size].price, 0);
-  const ship = !count || sub >= FREE_FROM ? 0 : SHIPPING;
-  const cc = $("cartCount"); cc.textContent = count; cc.classList.toggle("full", count > 0);
-  $("cartBtn").setAttribute("aria-label", `Warenkorb öffnen, ${count} Artikel`);
-  if (bump) { cc.classList.remove("bump"); void cc.offsetWidth; cc.classList.add("bump"); }
-  $("subtotal").textContent = euro(sub);
-  $("ship").textContent = !count ? "–" : ship ? euro(ship) : "kostenlos";
-  $("grand").textContent = euro(sub + ship);
-  $("shipNote").textContent = !count ? `Kostenloser Versand ab ${euro(FREE_FROM)}` : sub < FREE_FROM ? `Noch ${euro(FREE_FROM - sub)} bis zum kostenlosen Versand` : "Dein Versand ist kostenlos";
-  $("shipBar").style.transform = `scaleX(${clamp(sub / FREE_FROM, 0, 1)})`;
-  $("checkoutBtn").disabled = !count;
-  $("lines").innerHTML = state.cart.length ? state.cart.map((l, i) => `
-    <div class="line">
-      <div class="thumb-pic">${pic(COLORS[l.color].img + "-pack", "")}</div>
-      <div><h3>Lino ${l.size}</h3><small>${COLORS[l.color].name} · 3er-Set · ${euro(SIZES[l.size].price)}</small>
-        <div class="l-tools"><div class="qty"><button data-line="${i}" data-d="-1" aria-label="Menge verringern">−</button><output>${l.qty}</output><button data-line="${i}" data-d="1" aria-label="Menge erhöhen">+</button></div>
-        <button class="rm" data-rm="${i}">Entfernen</button></div></div>
-      <span class="sum">${euro(l.qty * SIZES[l.size].price)}</span>
-    </div>`).join("") : `<p class="muted">Dein Warenkorb ist leer.</p>`;
-}
-function addToCart() {
-  const hit = state.cart.find(l => l.color === state.color && l.size === state.size);
-  if (hit) hit.qty = Math.min(9, hit.qty + state.qty); else state.cart.push({ color: state.color, size: state.size, qty: state.qty });
-  renderCart(true);
-  [$("addBtn"), $("bbAdd")].forEach(b => { b.classList.add("done"); setTimeout(() => b.classList.remove("done"), 1900); });
-  setTimeout(() => openCart(true), reduced ? 0 : 520);
-}
+// ─── HINWEIS UND MENÜ ─────────────────────────────────────────────────────
 let toastTimer;
 function toast(msg) {
   const t = $("toast"); t.textContent = msg; t.classList.add("show");
   clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove("show"), 2600);
 }
-// Warenkorb und Menü: beim Öffnen wandert der Fokus hinein, beim Schließen zurück
-const drawer = $("drawer"), menu = $("menu");
-let layerBack = null;
-function openCart(open) {
-  if (open === drawer.classList.contains("open")) return;
-  if (open) layerBack = document.activeElement;
-  drawer.classList.toggle("open", open); drawer.inert = !open; $("scrim").hidden = !open; root.classList.toggle("locked", open);
-  if (open) $("closeBtn").focus(); else if (layerBack && layerBack.focus) layerBack.focus();
-}
+// Menü: beim Öffnen wandert der Fokus hinein, beim Schließen zurück
+const menu = $("menu");
 function openMenu(open) {
   if (open === menu.classList.contains("open")) return;
   menu.classList.toggle("open", open); menu.inert = !open; root.classList.toggle("locked", open);
@@ -1289,10 +1186,10 @@ function trapTab(e, box) {
   else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { f[0].focus(); e.preventDefault(); }
 }
 document.addEventListener("keydown", e => {
-  const box = !lb.hidden ? lb : drawer.classList.contains("open") ? drawer : menu.classList.contains("open") ? menu : null;
+  const box = !lb.hidden ? lb : menu.classList.contains("open") ? menu : null;
   if (!box) return;
   if (e.key === "Tab") return trapTab(e, box);
-  if (e.key === "Escape") return box === lb ? closeLightbox() : box === drawer ? openCart(false) : openMenu(false);
+  if (e.key === "Escape") return box === lb ? closeLightbox() : openMenu(false);
   if (box === lb && e.key === "ArrowLeft") lbGo(lbIndex - 1);
   if (box === lb && e.key === "ArrowRight") lbGo(lbIndex + 1);
 });
@@ -1302,35 +1199,17 @@ document.addEventListener("click", e => {
   if (col) return setColor(col.dataset.color);
   const sz = e.target.closest("[data-size]:not(#regalPick)");
   if (sz) return setSize(sz.dataset.size);
-  const rm = e.target.closest("[data-rm]");
-  if (rm) { state.cart.splice(+rm.dataset.rm, 1); renderCart(); $("closeBtn").focus(); return; }
-  const ln = e.target.closest("[data-line]");
-  if (ln) {
-    const l = state.cart[+ln.dataset.line]; l.qty += +ln.dataset.d;
-    if (l.qty < 1) state.cart.splice(+ln.dataset.line, 1); else l.qty = Math.min(9, l.qty);
-    renderCart();
-    const again = $("lines").querySelector(`[data-line="${ln.dataset.line}"][data-d="${ln.dataset.d}"]`);
-    (again || $("closeBtn")).focus();
-    return;
-  }
   if (e.target.closest(".menu a")) openMenu(false);
 });
-$("qMinus").onclick = () => { state.qty = Math.max(1, state.qty - 1); paintBuy(); };
-$("qPlus").onclick = () => { state.qty = Math.min(9, state.qty + 1); paintBuy(); };
-$("addBtn").onclick = addToCart;
-$("bbAdd").onclick = addToCart;
-$("cartBtn").onclick = () => openCart(true);
-$("closeBtn").onclick = () => openCart(false);
-$("scrim").onclick = () => openCart(false);
 $("menuBtn").onclick = () => openMenu(true);
 $("menuClose").onclick = () => openMenu(false);
-$("checkoutBtn").onclick = () => toast("Vorschau: Hier würde die Kasse öffnen");
 $("waitForm").addEventListener("submit", e => {
   e.preventDefault();
   const picked = [["wHand", "Handtücher"], ["wBade", "Badetücher"], ["wMantel", "Bademäntel"], ["wDeko", "Wohnaccessoires"], ["wMoebel", "Möbel"]].filter(([id]) => $(id).checked).map(([, t]) => t);
   if (!/.+@.+\..+/.test($("waitMail").value.trim())) { $("waitOk").textContent = "Bitte gib eine gültige E-Mail-Adresse ein."; return; }
   if (!picked.length) { $("waitOk").textContent = "Wähle mindestens ein Produkt aus."; return; }
-  $("waitOk").textContent = `Danke. Wir melden uns, sobald ${picked.join(", ").replace(/, ([^,]*)$/, " und $1")} da sind. (Vorschau: es wird nichts gespeichert.)`;
+  // Die Warteliste ist noch an keinen E-Mail-Dienst angeschlossen. Bis dahin wird nichts gespeichert und das auch so gesagt.
+  $("waitOk").textContent = "Danke! Die Warteliste startet in Kürze. Bis dahin findest du OWRE auf Amazon.de.";
 });
 
 // ─── BEWEGUNG ──────────────────────────────────────────────────────────────
@@ -1343,7 +1222,7 @@ addEventListener("scroll", () => {
   const y = scrollY;
   head.classList.toggle("scrolled", y > 30);
   if (Math.abs(y - lastY) > 6) { head.classList.toggle("hide", y > lastY && y > 500); lastY = y; }
-  const gone = $("addBtn").getBoundingClientRect().bottom < 0;      // Kaufknopf nach oben aus dem Bild?
+  const gone = $("amzBtn").getBoundingClientRect().bottom < 0;      // Amazon-Knopf nach oben aus dem Bild?
   if (gone !== addGone) { addGone = gone; paintBar(); }
 }, { passive: true });
 // Über OWRE: der Satz füllt sich beim Scrollen Wort für Wort
@@ -1367,7 +1246,7 @@ function paintBar() {
   root.style.setProperty("--bar", on ? bar.offsetHeight + "px" : "0px");
 }
 if ("IntersectionObserver" in window) {
-  new IntersectionObserver(([en]) => { footIn = en.isIntersecting; paintBar(); }).observe(document.querySelector(".site-foot .draft"));
+  new IntersectionObserver(([en]) => { footIn = en.isIntersecting; paintBar(); }).observe(document.querySelector(".site-foot"));
   new IntersectionObserver(([en]) => { revSeen = en.isIntersecting; revHold(); }, { threshold: .4 }).observe(revBox);
 }
 // Abschnitte gleiten beim Scrollen herein. Was beim Laden schon sichtbar ist, erscheint sofort.
@@ -1390,5 +1269,9 @@ if ("ResizeObserver" in window) {
 }
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(paintInk);
 
+$$("[data-rating]").forEach(el => { el.textContent = ratingText(); });
+$("year").textContent = new Date().getFullYear();
 paintColor(); setFeat(0); renderRegal(); showReview(0); revHold();
 </script>
+</body>
+</html>

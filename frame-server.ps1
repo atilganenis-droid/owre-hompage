@@ -16,10 +16,8 @@ while ($l.IsListening) {
       $fs = [IO.File]::Create((Join-Path $out $name)); $req.InputStream.CopyTo($fs); $fs.Close()
       $res.StatusCode = 204
     } elseif ($req.Url.AbsolutePath -eq '/preview') {
-      # Wie die veroeffentlichte Seite: Inhalt in ein Grundgeruest mit Doctype und Viewport setzen
-      $body = [IO.File]::ReadAllText((Join-Path $root 'owre-shop.html'), [Text.Encoding]::UTF8)
-      $html = '<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><style>:root{color-scheme:light;padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style></head><body>' + $body + '</body></html>'
-      $bytes = [Text.Encoding]::UTF8.GetBytes($html)
+      # Vorschau der Startseite (index.html ist jetzt ein vollstaendiges HTML-Dokument)
+      $bytes = [IO.File]::ReadAllBytes((Join-Path $root 'index.html'))
       $res.ContentType = 'text/html; charset=utf-8'; $res.ContentLength64 = $bytes.Length; $res.OutputStream.Write($bytes, 0, $bytes.Length)
     } else {
       $rel = [Uri]::UnescapeDataString($req.Url.AbsolutePath.TrimStart('/'))
