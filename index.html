@@ -238,6 +238,8 @@ nav.main a:hover::after { transform: scaleX(1); transform-origin: left; }
 .buy { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 140px); display: grid; gap: 30px; min-width: 0; }
 .buy h2 { margin-top: 14px; font-size: clamp(54px, 6vw, 92px); line-height: .9; letter-spacing: -.035em; }
 .buy .sub { margin-top: 14px; color: var(--muted); }
+.buy .price { margin-top: 12px; font-size: 26px; font-weight: 400; font-variant-numeric: tabular-nums; }
+.buy .price small { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; }
 .rev-link { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 400; color: var(--muted); }
 .opt-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; font-size: 13px; font-weight: 400; }
 .swatches { display: flex; gap: 18px; padding: 5px; }
@@ -609,6 +611,7 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
       <span class="label muted">Kollektion 01 · Aufbewahrung</span>
       <h2>Lino</h2>
       <p class="sub" id="pSub">Aufbewahrungsbox aus Baumwolle &amp; Leinen, 3er-Set, XXL</p>
+      <p class="price" id="pPrice">39,99 €<small>Endpreis. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet. Versand und Lieferzeit siehe Amazon.</small></p>
       <a class="rev-link" href="#bewertungen">Bewertungen ansehen</a>
     </div>
     <div>
@@ -775,7 +778,7 @@ input[type="range"]:hover::-webkit-slider-thumb, input[type="range"]:active::-we
 
 <div class="buybar" id="buybar" inert><div class="wrap">
   <div class="bb-thumb"><img id="bbImg" src="img/shop/beige-pack.jpg" alt="" loading="lazy"></div>
-  <div class="bb-info"><b>Lino</b><span class="muted" id="bbVariant">Beige · XXL · 3er-Set</span></div>
+  <div class="bb-info"><b>Lino</b><span class="muted" id="bbVariant">Beige · XXL · 3er-Set · 39,99 €</span></div>
   <a class="btn" id="bbAmz" data-amz href="https://www.amazon.de/dp/B0GMLQXLKC" target="_blank" rel="noopener">Bei Amazon <span class="arr">↗</span></a>
 </div></div>
 
@@ -817,9 +820,12 @@ const dims = s => `${s.l} × ${s.b} × ${s.h}`;
 // Leere Einträge führen auf das Hauptangebot.
 const AMAZON_MAIN = "https://www.amazon.de/dp/B0GMLQXLKC";
 const AMAZON_LINKS = {
-  "beige-S": "", "beige-L": "", "beige-XXL": "",
-  "grau-S": "",  "grau-L": "",  "grau-XXL": ""
+  "beige-S": "https://www.amazon.de/dp/B0GML6F132", "beige-L": "https://www.amazon.de/dp/B0GMKWL842", "beige-XXL": "https://www.amazon.de/dp/B0GMLQXLKC",
+  "grau-S": "https://www.amazon.de/dp/B0GMLQK38C",  "grau-L": "https://www.amazon.de/dp/B0GML9YK8Q",  "grau-XXL": "https://www.amazon.de/dp/B0GMLQZ34K"
 };
+// Preise je 3er-Set (Stand 23.11.2026, von Enis vorgegeben). Bei jeder Preisänderung bei Amazon hier mitändern!
+const PRICES = { S: 24.99, L: 34.99, XXL: 39.99 };
+const euro = n => n.toFixed(2).replace(".", ",") + " €";
 const amzUrl = () => AMAZON_LINKS[`${state.color}-${state.size}`] || AMAZON_MAIN;
 // Echter Stand bei Amazon. Bei jeder Änderung hier nachtragen (Stand laut Jarvis: 06.11.2026).
 const RATING = { avg: 3.9, count: 19 };
@@ -867,14 +873,15 @@ function paintBuy() {
   const s = SIZES[state.size], c = COLORS[state.color];
   $$("#sizes .size").forEach(b => b.setAttribute("aria-pressed", b.dataset.size === state.size));
   $("pSub").textContent = `Aufbewahrungsbox aus Baumwolle & Leinen, 3er-Set, ${state.size}`;
-  $("bbVariant").textContent = `${c.name} · ${state.size} · 3er-Set`;
+  $("bbVariant").textContent = `${c.name} · ${state.size} · 3er-Set · ${euro(PRICES[state.size])}`;
+  $("pPrice").firstChild.nodeValue = euro(PRICES[state.size]);
   $$("[data-amz]").forEach(a => { a.href = amzUrl(); });
   $("facts").innerHTML = [["Inhalt", "3 gleich große Boxen"], ["Farbe", c.name], ["Griffe", "vorne und hinten"], ["Faltbar", "ja"], ["Maßangabe", "Länge × Breite × Höhe, außen"],
     ...Object.entries(SIZES).map(([k, v]) => [`Maße ${k}${k === state.size ? " (gewählt)" : ""}`, dims(v) + " cm"])]
     .map(([a, b]) => `<li><span>${a}</span><span>${b}</span></li>`).join("");
 }
 $("sizes").innerHTML = Object.entries(SIZES).map(([k, v]) =>
-  `<button class="size" id="sz-${k}" aria-pressed="false" data-size="${k}"><b>${k}</b><small>${dims(v)} cm</small></button>`).join("");
+  `<button class="size" id="sz-${k}" aria-pressed="false" data-size="${k}"><b>${k}</b><small>${dims(v)} cm · ${euro(PRICES[k])}</small></button>`).join("");
 
 // ─── GALERIE: ein Bild groß, weiche Überblendung, wischen, Pfeile oder Vorschaubilder ─────────
 const SHOTS = [["buero", "Arbeitszimmer"], ["bad", "Badezimmer"], ["wohnzimmer", "Wohnzimmer"]];
@@ -1014,7 +1021,7 @@ function renderAdvisor() {
     <h3>${info.head}</h3>
     <ul class="adv-list">${info.list.map(t => `<li>${esc(t)}</li>`).join("")}</ul>
     <figure class="scale">${scaleSvg(advSize)}<figcaption class="muted">Vorderseiten im gleichen Maßstab, daneben ein Blatt A4.</figcaption></figure>
-    <div class="adv-buy"><span class="adv-price">3er-Set in ${c.name}</span>
+    <div class="adv-buy"><span class="adv-price">3er-Set in ${c.name} · ${euro(PRICES[advSize])}</span>
       <button class="btn${chosen ? " ghost" : ""}" id="advPick"${chosen ? " disabled" : ""}>${chosen ? `Größe ${advSize} ist gewählt` : `Größe ${advSize} wählen <span class="arr">→</span>`}</button></div>`;
 }
 function advTo(k, focus) { if (k === advSize) return; advSize = k; renderAdvisor(); if (focus) $("adv-" + k).focus(); }
